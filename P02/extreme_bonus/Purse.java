@@ -26,7 +26,7 @@ public class Purse {
             }
         }
         System.out.println("Total value of coins in the purse: $" + sumCoins);
-        System.out.println("Total weight of coins in the purse: " + totalWeight + " grams");
+        System.out.printf("Total weight of coins in the purse: %.3f grams%n", totalWeight);
         System.out.println("Earliest Year: " + earliestYear);
         System.out.print("Latest Year: " + latestYear);
     }
