@@ -22,7 +22,7 @@ public class Coin {
             case QUARTER:
                 return year < 1965 ? 6.250 : 5.670;
             default:
-                return 0.0;
+                return 0.000;
         }
     }
 
