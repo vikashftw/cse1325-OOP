@@ -11,6 +11,19 @@ public class Coin {
         return denomination.getValue();
     }
 
+    public double getWeight() {
+        switch(denomination) {
+            case PENNY:
+                return year < 1983 ? 3.110 : 2.500;
+            case NICKEL:
+                return 5.000;
+            case DIME:
+                return year < 1965 ? 2.500 : 2.268;
+            case QUARTER:
+                return year < 1965 ? 6.250 : 5.670;
+        }
+    }
+
     public int getYear() {
         return year;
     }
