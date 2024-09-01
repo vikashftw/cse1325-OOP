@@ -9,12 +9,14 @@ public class Purse {
         };
 
         double sumCoins = 0.0;
+        double totalWeight = 0.0;
         int earliestYear = Integer.MAX_VALUE;
         int latestYear = Integer.MIN_VALUE;
 
         for (Coin coin : purse) {
             System.out.println(coin);
             sumCoins += coin.getValue();
+            totalWeight += coin.getWeight();
 
             if (coin.getYear() < earliestYear) {
                 earliestYear = coin.getYear();
@@ -24,6 +26,7 @@ public class Purse {
             }
         }
         System.out.println("Total value of coins in the purse: $" + sumCoins);
+        System.out.println("Total weight of coins in the purse: " + totalWeight + " grams");
         System.out.println("Earliest Year: " + earliestYear);
         System.out.print("Latest Year: " + latestYear);
     }
