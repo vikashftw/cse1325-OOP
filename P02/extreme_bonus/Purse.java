@@ -9,7 +9,7 @@ public class Purse {
         };
 
         double sumCoins = 0.0;
-        double totalWeight = 0.0;
+        double totalWeight = 0.000;
         int earliestYear = Integer.MAX_VALUE;
         int latestYear = Integer.MIN_VALUE;
 
