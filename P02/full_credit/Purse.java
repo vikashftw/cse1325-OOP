@@ -1,11 +1,11 @@
 public class Purse {
     public static void main(String[] args) {
         Coin[] purse = new Coin[] {
-                new Coin(Denomination.PENNY, 1850),
-                new Coin(Denomination.NICKEL, 1862),
-                new Coin(Denomination.DIME, 1905),
-                new Coin(Denomination.QUARTER, 1803),
-                new Coin(Denomination.NICKEL, 1915),
+                new Coin(Denomination.PENNY, 1910),
+                new Coin(Denomination.NICKEL, 1938),
+                new Coin(Denomination.DIME, 1946),
+                new Coin(Denomination.QUARTER, 1967),
+                new Coin(Denomination.NICKEL, 2017),
         };
 
         double sumCoins = 0.0;
