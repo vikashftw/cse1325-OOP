@@ -1,5 +1,5 @@
-package P03;
-
 public class TestMedia {
-    
+    public static void main(String[] args) {
+        
+    }
 }
