@@ -1,5 +1,38 @@
 public class TestStudent {
     public static void main(String[] args) {
-        
+        // Test 1: toString() method
+        Student student = new Student("Prof Rice", 1001234567, "george.rice@uta.edu");
+        String expected = "Prof Rice (1001234567, george.rice@uta.edu, Account #1)";
+        String actual = student.toString();
+
+        if (!expected.equals(actual)) {
+            System.out.println("FAIL: Student toString() returned incorrect value.");
+            System.exit(1);
+        }
+
+        // Test 2: Invalid email exception
+        try {
+            new Student("John Doe", 1007654321, "john.doe@gmail.com");
+            System.out.println("FAIL: IllegalArgumentException not thrown for invalid email.");
+            System.exit(1);
+        } catch (IllegalArgumentException e) {
+            if (!e.getMessage().equals("Non-UTA email address: john.doe@gmail.com")) {
+                System.out.println("FAIL: Incorrect exception message: " + e.getMessage());
+                System.exit(1);
+            }
+        }
+
+        // Test 3: Request media
+        Media media = new Media("The Little Shop of Horrors", "https://publicdomainmovie.net/movie/the-little-shop-of-horrors-0");
+        String playResult = student.requestMedia(media);
+        String expectedPlayResult = "Playing The Little Shop of Horrors (https://publicdomainmovie.net/movie/the-little-shop-of-horrors-0)";
+
+        if (!expectedPlayResult.equals(playResult)) {
+            System.out.println("FAIL: Student requestMedia() returned incorrect value.");
+            System.exit(1);
+        }
+
+        // If all tests pass, exit normally with code 0
+        System.exit(0);
     }
 }
