@@ -5,13 +5,11 @@ public class Media {
     private String title;
     private String url;
 
-    // Constructor
     public Media(String title, String url) {
         this.title = title;
         this.url = validateURL(url);
     }
 
-    // URL validation
     private String validateURL(String url) {
         try {
             URL validUrl = new URL(url);
