@@ -1,5 +1,5 @@
-import java.net.URI;
-import java.net.URISyntaxException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class Media {
     private String title;
@@ -8,24 +8,23 @@ public class Media {
     // Constructor
     public Media(String title, String url) {
         this.title = title;
-        validateURL(url);
-        this.url = url;
+        this.url = validateURL(url);
     }
 
-    // Validate the URL using URI (no deprecated methods)
-    private void validateURL(String url) {
+    // URL validation
+    private String validateURL(String url) {
         try {
-            URI uri = new URI(url);
-            // Ensure the URL has a scheme and is either a file or has a host
-            if (uri.getScheme() == null || (uri.getHost() == null && !url.startsWith("file://"))) {
+            URL validUrl = new URL(url);
+            if (validUrl.getProtocol().equals("file") || validUrl.getHost() != null) {
+                return url;
+            } else {
                 throw new IllegalArgumentException("Invalid URL: " + url);
             }
-        } catch (URISyntaxException e) {
+        } catch (MalformedURLException e) {
             throw new IllegalArgumentException("Invalid URL: " + url);
         }
     }
 
-    // toString method as specified in the UML
     @Override
     public String toString() {
         return title + " (" + url + ")";

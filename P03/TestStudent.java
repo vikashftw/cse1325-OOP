@@ -1,6 +1,6 @@
 public class TestStudent {
     public static void main(String[] args) {
-        // Test 1: toString() method
+        
         Student student = new Student("Prof Rice", 1001234567, "george.rice@uta.edu");
         String expected = "Prof Rice (1001234567, george.rice@uta.edu, Account #1)";
         String actual = student.toString();
@@ -10,7 +10,6 @@ public class TestStudent {
             System.exit(1);
         }
 
-        // Test 2: Invalid email exception
         try {
             new Student("John Doe", 1007654321, "john.doe@gmail.com");
             System.out.println("FAIL: IllegalArgumentException not thrown for invalid email.");
@@ -22,7 +21,7 @@ public class TestStudent {
             }
         }
 
-        // Test 3: Request media
+        
         Media media = new Media("The Little Shop of Horrors", "https://publicdomainmovie.net/movie/the-little-shop-of-horrors-0");
         String playResult = student.requestMedia(media);
         String expectedPlayResult = "Playing The Little Shop of Horrors (https://publicdomainmovie.net/movie/the-little-shop-of-horrors-0)";
@@ -32,7 +31,6 @@ public class TestStudent {
             System.exit(1);
         }
 
-        // If all tests pass, exit normally with code 0
         System.exit(0);
     }
 }

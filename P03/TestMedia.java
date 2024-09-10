@@ -11,7 +11,6 @@ public class TestMedia {
             System.exit(1);
         }
 
-        // Test 2: URL validation - valid URLs
         String[] validURLs = {
             "https://youtube.com",
             "file://media/lib/garp.mp4"
@@ -26,7 +25,6 @@ public class TestMedia {
             }
         }
 
-        // Test 3: URL validation - invalid URLs
         String[] invalidURLs = {
             "hello.world",
             "htt://badurl.com",
@@ -43,13 +41,9 @@ public class TestMedia {
                     System.out.println("FAIL: Incorrect exception message for URL: " + url);
                     System.exit(1);
                 }
-            } catch (Exception e) {
-                System.out.println("FAIL: Unexpected exception type for URL: " + url);
-                System.exit(1);
             }
         }
 
-        // If all tests pass, exit normally with code 0
         System.exit(0);
     }
 }
