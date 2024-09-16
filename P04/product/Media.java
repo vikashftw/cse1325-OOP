@@ -1,3 +1,5 @@
+package product;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 

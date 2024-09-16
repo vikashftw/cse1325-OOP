@@ -1,3 +1,7 @@
+package customer;
+
+import product.Media;
+
 public class Student {
 
     private String name;
