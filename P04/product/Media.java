@@ -6,10 +6,12 @@ import java.net.URL;
 public class Media {
     private String title;
     private String url;
+    private int points;
 
-    public Media(String title, String url) {
+    public Media(String title, String url, int points) {
         this.title = title;
         this.url = validateURL(url);
+        this.points = points;
     }
 
     private String validateURL(String url) {
@@ -25,8 +27,11 @@ public class Media {
         }
     }
 
+    public int getPoints() {
+        return points;
+    }
     @Override
     public String toString() {
-        return title + " (" + url + ")";
+        return title + " (" + url + ")" + ", " + points + " points";
     }
 }

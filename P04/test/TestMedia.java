@@ -4,8 +4,9 @@ import product.Media;
 
 public class TestMedia {
     public static void main(String[] args) {
-        Media media = new Media("The Little Shop of Horrors", "https://publicdomainmovie.net/movie/the-little-shop-of-horrors-0");
-        String expected = "The Little Shop of Horrors (https://publicdomainmovie.net/movie/the-little-shop-of-horrors-0)";
+        int points = 0;
+        Media media = new Media("The Little Shop of Horrors", "https://publicdomainmovie.net/movie/the-little-shop-of-horrors-0", points);
+        String expected = "The Little Shop of Horrors (https://publicdomainmovie.net/movie/the-little-shop-of-horrors-0), "+ points + " points";
         String actual = media.toString();
 
         if (!expected.equals(actual)) {
@@ -22,7 +23,7 @@ public class TestMedia {
         
         for (String url : validURLs) {
             try {
-                new Media("Test", url);
+                new Media("Test", url, points);
             } catch (Exception e) {
                 System.out.println("FAIL: Valid URL was rejected: " + url);
                 System.exit(1);
@@ -37,7 +38,7 @@ public class TestMedia {
 
         for (String url : invalidURLs) {
             try {
-                new Media("Test", url);
+                new Media("Test", url, points);
                 System.out.println("FAIL: Invalid URL was accepted: " + url);
                 System.exit(1);
             } catch (IllegalArgumentException e) {

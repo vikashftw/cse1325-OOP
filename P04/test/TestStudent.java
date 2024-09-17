@@ -5,6 +5,8 @@ import product.Media;
 
 public class TestStudent {
     public static void main(String[] args) {
+
+        int points = 0;
         
         Student student = new Student("Prof Rice", 1001234567, "george.rice@uta.edu");
         String expected = "Prof Rice (1001234567, george.rice@uta.edu, Account #1)";
@@ -27,9 +29,9 @@ public class TestStudent {
         }
 
         
-        Media media = new Media("The Little Shop of Horrors", "https://publicdomainmovie.net/movie/the-little-shop-of-horrors-0");
+        Media media = new Media("The Little Shop of Horrors", "https://publicdomainmovie.net/movie/the-little-shop-of-horrors-0", points);
         String playResult = student.requestMedia(media);
-        String expectedPlayResult = "Playing The Little Shop of Horrors (https://publicdomainmovie.net/movie/the-little-shop-of-horrors-0)";
+        String expectedPlayResult = "Playing The Little Shop of Horrors (https://publicdomainmovie.net/movie/the-little-shop-of-horrors-0), "+ points + " points";
 
         if (!expectedPlayResult.equals(playResult)) {
             System.out.println("FAIL: Student requestMedia() returned incorrect value.");
