@@ -8,7 +8,7 @@ public class TestStudent {
 
         int points = 0;
         
-        Student student = new Student("Prof Rice", 1001234567, "george.rice@uta.edu");
+        Student student = new Student("Prof Rice", 1001234567, "george.rice@uta.edu", true);
         String expected = "Prof Rice (1001234567, george.rice@uta.edu, Account #1)";
         String actual = student.toString();
 
@@ -18,7 +18,7 @@ public class TestStudent {
         }
 
         try {
-            new Student("John Doe", 1007654321, "john.doe@gmail.com");
+            new Student("John Doe", 1007654321, "john.doe@gmail.com", false);
             System.out.println("FAIL: IllegalArgumentException not thrown for invalid email.");
             System.exit(1);
         } catch (IllegalArgumentException e) {
