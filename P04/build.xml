@@ -5,6 +5,21 @@
 <src path="."/>
 </javac>
 </target>
+<target name="javadoc" description="Generate JavaDoc">
+ <javadoc packagenames="customer.*,product.*"
+ sourcepath="."
+ excludepackagenames="com.dummy.test.doc-files.*"
+ defaultexcludes="yes"
+ destdir="docs/api"
+ author="true"
+ version="true"
+ use="true"
+ windowtitle="MANGA API">
+ <doctitle><![CDATA[<h1>Mavs Arboreta, Nursery, and Garden Association</h1>]]></doctitle>
+ <bottom><![CDATA[<i>Copyright &#169; 2024 Vikash Mall. Licensed as Apache 2.0</i>]]></bottom>
+ <tag name="license.agreement" scope="all" description="Licensed under:"/>
+ </javadoc>
+</target>
 <target name="clean" description="Clean output files">
 <delete>
 <fileset dir=".">
