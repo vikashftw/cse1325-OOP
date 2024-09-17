@@ -21,7 +21,7 @@ public class Alacarte extends Account {
             pointsRemaining -= mediaPoints;
             return "Playing " + media.toString();
         } else {
-            return "Buy more points: Requires " + mediaPoints + " points, you have " + pointsRemaining + " points.";
+            return "Buy more points: Requires " + mediaPoints + " points, you have " + pointsRemaining;
         }
     }
 }
