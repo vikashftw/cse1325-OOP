@@ -39,8 +39,10 @@ public class Main {
         moes.addMedia(new Media(title, url, points));
     }
     private void playMedia() {
+        System.out.println(moes.getStudentList());
         System.out.print("Student number? ");
         int studentIndex = Integer.parseInt(in.nextLine());
+        System.out.println(moes.getMediaList());
         System.out.print("Media number? ");
         int mediaIndex = Integer.parseInt(in.nextLine());
         System.out.println(moes.playMedia(studentIndex, mediaIndex));
