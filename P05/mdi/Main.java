@@ -25,7 +25,7 @@ public class Main {
         char account = in.nextLine().charAt(0);
         Student newStudent = new Student(name, id, email, account == 'u');
         moes.addStudent(newStudent);
-        output = "Added student "+ newStudent.toString();
+        output = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\nAdded student "+ newStudent.toString()+ "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
     }
     private void listStudents() {
         System.out.println(moes.getStudentList());
@@ -40,7 +40,7 @@ public class Main {
         int points = Integer.parseInt(in.nextLine());
         Media newMedia = new Media(title, url, points);
         moes.addMedia(newMedia);
-        output = "Added media "+ newMedia.toString();
+        output = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\nAdded media "+ newMedia.toString()+ "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
     }
     private void playMedia() {
         System.out.println(moes.getStudentList());
@@ -49,7 +49,8 @@ public class Main {
         System.out.println(moes.getMediaList());
         System.out.print("Media number? ");
         int mediaIndex = Integer.parseInt(in.nextLine());
-        System.out.println(moes.playMedia(studentIndex, mediaIndex));
+        String nowPlaying = moes.playMedia(studentIndex, mediaIndex);
+        output = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n"+ nowPlaying+ "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
     }
     private void listMedia() {
         System.out.println(moes.getMediaList());
@@ -93,8 +94,10 @@ public class Main {
         new Main().mdi();
     }
 
+    private static String clearScreen = "";
     public void mdi() {
         while(running) {
+            System.out.println(clearScreen);
             System.out.println("                      \\\\\\///");
             System.out.println("                     / _  _ \\");
             System.out.println("                   (| (.)(.) |)");
@@ -105,7 +108,8 @@ public class Main {
             System.out.println("|                                               |");
             System.out.println("'-----------------------------------------------'\n\n");
 
-            System.out.println(menu);
+            System.out.print(menu);
+            System.out.println(output);
             System.out.print("Selection? ");
             int choice = Integer.parseInt(in.nextLine());
 
@@ -114,6 +118,7 @@ public class Main {
             } catch (Exception e) {
                 System.out.println("Error: Invalid option. Please try again.");
             }
+            clearScreen = "\n".repeat(255);
         }
     }
     private void endApp() {
