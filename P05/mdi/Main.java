@@ -23,7 +23,9 @@ public class Main {
         String email = in.nextLine();
         System.out.print("(a)lacarte or (u)nlimited? ");
         char account = in.nextLine().charAt(0);
-        moes.addStudent(new Student(name, id, email, account == 'u'));
+        Student newStudent = new Student(name, id, email, account == 'u');
+        moes.addStudent(newStudent);
+        output = "Added student "+ newStudent.toString();
     }
     private void listStudents() {
         System.out.println(moes.getStudentList());
@@ -36,7 +38,9 @@ public class Main {
         String url = in.nextLine();
         System.out.print("Points? ");
         int points = Integer.parseInt(in.nextLine());
-        moes.addMedia(new Media(title, url, points));
+        Media newMedia = new Media(title, url, points);
+        moes.addMedia(newMedia);
+        output = "Added media "+ newMedia.toString();
     }
     private void playMedia() {
         System.out.println(moes.getStudentList());
