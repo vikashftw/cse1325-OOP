@@ -18,11 +18,11 @@ public class Main {
         System.out.print("Student name? ");
         String name = in.nextLine();
         System.out.print("Student ID? ");
-        int id = in.nextInt();
+        int id = Integer.parseInt(in.nextLine());
         System.out.print("Student email? ");
         String email = in.nextLine();
         System.out.print("(a)lacarte or (u)nlimited? ");
-        char account = in.next().charAt(0);
+        char account = in.nextLine().charAt(0);
         moes.addStudent(new Student(name, id, email, account == 'u'));
     }
     private void listStudents() {
@@ -80,7 +80,7 @@ public class Main {
         menu.addMenuItem(new MenuItem("Buy points",             () -> buyPoints()));
         menu.addMenuItem(new MenuItem("Add media\n",            () -> addMedia()));
         menu.addMenuItem(new MenuItem("List all students",      () -> listStudents()));
-        menu.addMenuItem(new MenuItem("Add a student\n",        () -> addStudent()));
+        menu.addMenuItem(new MenuItem("Add a student",        () -> addStudent()));
     }
 
     public static void main(String[] args) {
