@@ -82,7 +82,7 @@ public class Main {
         menu.addMenuItem(new MenuItem("Buy points",             () -> buyPoints()));
         menu.addMenuItem(new MenuItem("Add media\n",            () -> addMedia()));
         menu.addMenuItem(new MenuItem("List all students",      () -> listStudents()));
-        menu.addMenuItem(new MenuItem("Add a student",        () -> addStudent()));
+        menu.addMenuItem(new MenuItem("Add a student",          () -> addStudent()));
     }
 
     public static void main(String[] args) {
@@ -91,6 +91,16 @@ public class Main {
 
     public void mdi() {
         while(running) {
+            System.out.println("                      \\\\\\///");
+            System.out.println("                     / _  _ \\");
+            System.out.println("                   (| (.)(.) |)");
+            System.out.println(".----------------.OOOo--()--oOOO.---------------.");
+            System.out.println("|                                               |");
+            System.out.println("|    Mavs Online Entertainment System (MOES)    |");
+            System.out.println("|    Version 0.3.0           ©2024 Prof Rice    |");
+            System.out.println("|                                               |");
+            System.out.println("'-----------------------------------------------'\n\n");
+
             System.out.println(menu);
             System.out.print("Selection? ");
             int choice = Integer.parseInt(in.nextLine());
