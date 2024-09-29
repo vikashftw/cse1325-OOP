@@ -1,11 +1,9 @@
 package product;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
 /**
  * Represents media content that can be accessed by accounts, 
  * such as movies or videos, with associated title, URL, and points.
+ * Ensures that the URL provided is valid at the time of object creation.
  * 
  * @author Vikash Mall
  * @version 0.2
@@ -17,38 +15,24 @@ public class Media {
     private int points;
 
     /**
-     * Constructs a Media object with a title, URL, and points required for access.
-     * 
+     * Constructs a Media object with a specified title, URL, and points required for access.
+     * Validates the URL to ensure it is properly formatted and can be converted to a valid URI.
+     *
      * @param title  the title of the media
-     * @param url    the URL of the media
+     * @param url    the URL where the media can be accessed; must be a valid, well-formed URL.
      * @param points the points required to access the media
-     * @throws IllegalArgumentException if the URL is invalid
+     * @throws RuntimeException if the URL is not a valid URI or cannot be converted to a URL
      * @since 1.0
      */
     public Media(String title, String url, int points) {
         this.title = title;
-        this.url = validateURL(url);
+        this.url = url;
         this.points = points;
-    }
 
-    /**
-     * Validates the media URL and ensures it is either a valid URL or a file URL.
-     * 
-     * @param url the URL to validate
-     * @return the validated URL if valid
-     * @throws IllegalArgumentException if the URL is invalid
-     * @since 1.0
-     */
-    private String validateURL(String url) {
         try {
-            URL validUrl = new URL(url);
-            if (validUrl.getProtocol().equals("file") || validUrl.getHost() != null) {
-                return url;
-            } else {
-                throw new IllegalArgumentException("Invalid URL: " + url);
-            }
-        } catch (MalformedURLException e) {
-            throw new IllegalArgumentException("Invalid URL: " + url);
+            new java.net.URI(url).toURL();
+        } catch(Exception e) {
+            throw new RuntimeException(url + " is invalid", e);
         }
     }
 
