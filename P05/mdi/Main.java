@@ -14,6 +14,10 @@ public class Main {
     private boolean running;
     private Scanner in = new Scanner(System.in);
 
+    // New Variables that help a lot in formatting the output
+    private String formatStart = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n";
+    private String formatEnd = "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+
     private void addStudent() {
         System.out.print("Student name? ");
         String name = in.nextLine();
@@ -25,10 +29,10 @@ public class Main {
         char account = in.nextLine().charAt(0);
         Student newStudent = new Student(name, id, email, account == 'u');
         moes.addStudent(newStudent);
-        output = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\nAdded student "+ newStudent.toString()+ "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+        output = formatStart + "Added student " + newStudent.toString() + formatEnd;
     }
     private void listStudents() {
-        System.out.println(moes.getStudentList());
+        output = formatStart + moes.getStudentList() + formatEnd;
     }
 
     private void addMedia() {
@@ -40,7 +44,7 @@ public class Main {
         int points = Integer.parseInt(in.nextLine());
         Media newMedia = new Media(title, url, points);
         moes.addMedia(newMedia);
-        output = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\nAdded media "+ newMedia.toString()+ "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+        output = formatStart + "Added media "+ newMedia.toString() + formatEnd;
     }
     private void playMedia() {
         System.out.println(moes.getStudentList());
@@ -50,15 +54,15 @@ public class Main {
         System.out.print("Media number? ");
         int mediaIndex = Integer.parseInt(in.nextLine());
         String nowPlaying = moes.playMedia(studentIndex, mediaIndex);
-        output = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n"+ nowPlaying+ "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+        output = formatStart + nowPlaying + formatEnd;
     }
     private void listMedia() {
-        System.out.println(moes.getMediaList());
+        output = formatStart + moes.getMediaList() + formatEnd;
     }
     private void listAvailablePoints() {
         System.out.print("Student number? ");
         int studentIndex = Integer.parseInt(in.nextLine());
-        System.out.println(moes.getPoints(studentIndex));
+        output = formatStart + "Available Points: " + moes.getPoints(studentIndex) + formatEnd;
     }
     private void buyPoints() {
         System.out.print("Student number? ");
@@ -68,9 +72,9 @@ public class Main {
         System.out.print("How many additional points would you like to buy? ");
         int pointsToBuy = Integer.parseInt(in.nextLine());
         if (pointsToBuy < 0) {
-            System.out.println("Cannot purchase negative points.");
+            output = formatStart + "Cannot purchase negative points." + formatEnd;
         } else {
-            System.out.println(moes.buyPoints(studentIndex, pointsToBuy));
+            output = formatStart + moes.buyPoints(studentIndex, pointsToBuy) + formatEnd;
         }
     }
 
