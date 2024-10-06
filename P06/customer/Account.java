@@ -1,6 +1,9 @@
 package customer;
 
 import product.Media;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
 
 /**
  * Represents an abstract account for managing media access.
@@ -22,6 +25,32 @@ public abstract class Account {
      */
     public Account() {
         this.accountNumber = nextAccountNumber++;
+    }
+
+    /**
+     * Constructs an Account object by reading values from a BufferedReader.
+     * Reads the account number and next account number in that order.
+     *
+     * @param br BufferedReader object for reading the account fields.
+     * @throws IOException if an I/O error occurs
+     * @since 1.0
+     */
+    public Account(BufferedReader br) throws IOException {
+        this.accountNumber = Integer.parseInt(br.readLine());
+        nextAccountNumber = Integer.parseInt(br.readLine());
+    }
+
+    /**
+     * Saves the account fields to a file using the provided BufferedWriter.
+     * Writes the account number and the static next account number to separate lines.
+     *
+     * @param bw BufferedWriter object for writing the account fields.
+     * @throws IOException if an I/O error occurs
+     * @since 1.0
+     */
+    public void save(BufferedWriter bw) throws IOException {
+        bw.write(Integer.toString(accountNumber) + "\n");
+        bw.write(Integer.toString(nextAccountNumber) + "\n");
     }
 
     /**
