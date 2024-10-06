@@ -1,5 +1,9 @@
 package customer;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+
 import product.Media;
 
 /**
@@ -40,6 +44,49 @@ public class Student {
         } else {
             this.account = new Alacarte();
         }
+    }
+
+    /**
+     * Constructs a Student object by reading values from a BufferedReader.
+     * Reads name, id, email, and then the class name of the Account type before reconstructing the account.
+     *
+     * @param br BufferedReader object for reading the student fields.
+     * @throws IOException if an I/O error occurs
+     * @since 1.0
+     */
+    public Student(BufferedReader br) throws IOException {
+        this.name = br.readLine();
+        this.id = Integer.parseInt(br.readLine());
+        this.email = br.readLine();
+
+        String accountType = br.readLine();
+        switch (accountType) {
+            case "customer.Unlimited":
+                this.account = new Unlimited(br);
+                break;
+            case "customer.Alacarte":
+                this.account = new Alacarte(br);
+                break;
+            default:
+                throw new IOException("Unknown account type: " + accountType);
+        }
+    }
+
+    /**
+     * Saves the student fields to a file using the provided BufferedWriter.
+     * Writes the name, ID, email, and the type and fields of the associated account.
+     *
+     * @param bw BufferedWriter object for writing the student fields.
+     * @throws IOException if an I/O error occurs
+     * @since 1.0
+     */
+    public void save(BufferedWriter bw) throws IOException {
+        bw.write(name + "\n");
+        bw.write(Integer.toString(id) + "\n");
+        bw.write(email + "\n");
+        bw.write(account.getClass().getName() + "\n");
+
+        account.save(bw);
     }
 
     /**
