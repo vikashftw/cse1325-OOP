@@ -1,5 +1,9 @@
 package product;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+
 /**
  * Represents media content that can be accessed by accounts, 
  * such as movies or videos, with associated title, URL, and points.
@@ -34,6 +38,34 @@ public class Media {
         } catch(Exception e) {
             throw new RuntimeException(url + " is invalid", e);
         }
+    }
+    
+    /**
+     * Constructs a Media object by reading values from a BufferedReader.
+     * Reads title, URL, and points in that order.
+     *
+     * @param br BufferedReader object for reading the media fields.
+     * @throws IOException if an I/O error occurs
+     * @since 1.0
+     */
+    public Media(BufferedReader br) throws IOException {
+        this.title = br.readLine();
+        this.url = br.readLine();
+        this.points = Integer.parseInt(br.readLine());
+    }
+
+    /**
+     * Saves the media fields to a file using the provided BufferedWriter.
+     * Writes the title, URL, and points to separate lines.
+     *
+     * @param bw BufferedWriter object for writing the media fields.
+     * @throws IOException if an I/O error occurs
+     * @since 1.0
+     */
+    public void save(BufferedWriter bw) throws IOException {
+        bw.write(title + "\n");
+        bw.write(url + "\n");
+        bw.write(Integer.toString(points) + "\n");
     }
 
     /**
