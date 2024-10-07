@@ -1,5 +1,8 @@
 package moes;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import customer.Alacarte;
@@ -16,8 +19,61 @@ import product.Media;
  * @since 1.0
  */
 public class Moes {
-    private ArrayList<Media> library = new ArrayList<>();
-    private ArrayList<Student> customers = new ArrayList<>();
+    private ArrayList<Media> library;
+    private ArrayList<Student> customers;
+
+    /**
+     * Default constructor for Moes.
+     * Initializes empty library and customers list.
+     */
+    public Moes() {
+        library = new ArrayList<>();
+        customers = new ArrayList<>();
+    }
+
+    /**
+     * Constructs a Moes object by reading values from a BufferedReader.
+     * Reads the library and customer lists from the input stream.
+     *
+     * @param br BufferedReader object for reading the Moes fields.
+     * @throws IOException if an I/O error occurs
+     * @since 1.1
+     */
+    public Moes(BufferedReader br) throws IOException {
+        this.library = new ArrayList<>();
+        this.customers = new ArrayList<>();
+
+        int librarySize = Integer.parseInt(br.readLine());
+        for (int i = 0; i < librarySize; i++) {
+            library.add(new Media(br));
+        }
+
+        int customerSize = Integer.parseInt(br.readLine());
+        for (int i = 0; i < customerSize; i++) {
+            customers.add(new Student(br));
+        }
+    }
+
+    /**
+     * Saves the Moes library and customers to a file using the provided BufferedWriter.
+     * Writes the size of the library and each Media object, followed by the size of the customers list
+     * and each Student object.
+     *
+     * @param bw BufferedWriter object for writing the Moes fields.
+     * @throws IOException if an I/O error occurs
+     * @since 1.1
+     */
+    public void save(BufferedWriter bw) throws IOException {
+        bw.write(Integer.toString(library.size()) + "\n");
+        for (Media media : library) {
+            media.save(bw);
+        }
+
+        bw.write(Integer.toString(customers.size()) + "\n");
+        for (Student student : customers) {
+            student.save(bw);
+        }
+    }
 
     /**
      * Adds a media object to the library.
