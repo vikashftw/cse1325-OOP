@@ -60,6 +60,25 @@ public class Main {
     }
 
     private void save() {
+        java.io.File file = new java.io.File(filename);
+        if (file.exists()) {
+            java.io.File backupFile = new java.io.File(filename + "~");
+            if (backupFile.exists()) {
+                boolean deleted = backupFile.delete();
+                if (!deleted) {
+                    System.err.println("Failed to delete old backup file. Save operation aborted.");
+                    return;
+                }
+            }
+        
+            boolean renamed = file.renameTo(backupFile);
+            if (!renamed) {
+                System.err.println("Failed to create backup file. Save operation aborted.");
+                return;
+            }
+            System.out.println("Backup file created: " + backupFile.getName());
+        }
+
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename))) {
             bw.write(magicCookie + "\n");
             bw.write(fileVersion + "\n");
