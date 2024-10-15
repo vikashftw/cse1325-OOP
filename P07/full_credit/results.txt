@@ -21,11 +21,158 @@ QUESTION 2: Provide the full output (including the time command) for your progra
 
 for i in {1..16} ; do echo ; echo $i Threads; time java Boggle 90 - $i ; done
 
+Answer:
+
+$ for i in {1..16} ; do echo ; echo $i Threads; time java Boggle 140 - $i ; done
+
+1 Threads
+
+Found 51590 solutions
+Hash is 0xAE4B38F4
+
+real    0m39.976s
+user    0m0.000s
+sys     0m0.015s
+
+2 Threads
+
+Found 51590 solutions
+Hash is 0xAE4B38F4
+
+real    0m23.903s
+user    0m0.000s
+sys     0m0.000s
+
+3 Threads
+
+Found 51590 solutions
+Hash is 0xAE4B38F4
+
+real    0m16.750s
+user    0m0.000s
+sys     0m0.000s
+
+4 Threads
+
+Found 51590 solutions
+Hash is 0xAE4B38F4
+
+real    0m13.435s
+user    0m0.000s
+sys     0m0.000s
+
+5 Threads
+
+Found 51590 solutions
+Hash is 0xAE4B38F4
+
+real    0m12.928s
+user    0m0.000s
+sys     0m0.000s
+
+6 Threads
+
+Found 51590 solutions
+Hash is 0xAE4B38F4
+
+real    0m12.794s
+user    0m0.000s
+sys     0m0.000s
+
+7 Threads
+
+Found 51590 solutions
+Hash is 0xAE4B38F4
+
+real    0m13.326s
+user    0m0.000s
+sys     0m0.000s
+
+8 Threads
+
+Found 51590 solutions
+Hash is 0xAE4B38F4
+
+real    0m14.237s
+user    0m0.000s
+sys     0m0.016s
+
+9 Threads
+
+Found 51590 solutions
+Hash is 0xAE4B38F4
+
+real    0m13.294s
+user    0m0.000s
+sys     0m0.000s
+
+10 Threads
+
+Found 51590 solutions
+Hash is 0xAE4B38F4
+
+real    0m15.002s
+user    0m0.000s
+sys     0m0.015s
+
+11 Threads
+
+Found 51590 solutions
+Hash is 0xAE4B38F4
+
+real    0m14.828s
+user    0m0.000s
+sys     0m0.000s
+
+12 Threads
+
+Found 51590 solutions
+Hash is 0xAE4B38F4
+
+real    0m14.439s
+user    0m0.000s
+sys     0m0.000s
+
+13 Threads
+
+Found 51590 solutions
+Hash is 0xAE4B38F4
+
+real    0m16.311s
+user    0m0.000s
+sys     0m0.000s
+
+14 Threads
+
+Found 51590 solutions
+Hash is 0xAE4B38F4
+
+real    0m14.508s
+user    0m0.015s
+sys     0m0.000s
+
+15 Threads
+
+Found 51590 solutions
+Hash is 0xAE4B38F4
+
+real    0m14.822s
+user    0m0.000s
+sys     0m0.000s
+
+16 Threads
+
+Found 51590 solutions
+Hash is 0xAE4B38F4
+
+real    0m16.590s
+user    0m0.000s
+sys     0m0.000s
+
 
 
 
 QUESTION 3: Does adding more threads continue to speed up the program? Do more threads ever slow down the program slightly?  Why or why not?
-
 
 
 QUESTION 4: Does adding more threads increase the "system load", or is it constant regardless of the number of threads?  Why?
