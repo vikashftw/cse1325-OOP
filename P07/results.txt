@@ -191,8 +191,33 @@ BONUS
 =====
 
 QUESTION 5: Time your version of Boggle as you did for the full credit version. Is this additional layer of threading faster, slower, or roughly equivalent in performance? Why?
-
+Answer: Using dynamic threading with a shared counter to assign boards resulted in slightly faster performance compared to static allocation. This approach keeps threads busy by requesting a new board immediately after completing the current one, leading to better workload distribution and reduced idle time. The performance improvement is marginal when thread count aligns well with CPU cores, as managing extra threads adds some overhead.
 
 YOUR Timing:
 
+1 Threads
 
+Found 51590 solutions
+Hash is 0xAE4B38F4
+
+real    0m39.654s
+user    0m0.000s
+sys     0m0.014s
+
+5 Threads
+
+Found 51590 solutions
+Hash is 0xAE4B38F4
+
+real    0m12.329s
+user    0m0.000s
+sys     0m0.000s
+
+16 Threads
+
+Found 51590 solutions
+Hash is 0xAE4B38F4
+
+real    0m14.750s
+user    0m0.000s
+sys     0m0.000s
