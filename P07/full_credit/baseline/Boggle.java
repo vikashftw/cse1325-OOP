@@ -24,6 +24,25 @@ public class Boggle {
     
     // =========== WRITE AND INVOKE THIS METHOD FOR EACH THREAD ===========
     private static void solveRange(int first, int lastPlusOne, int threadNumber) {
+        for (int i = first; i < lastPlusOne; i++) {
+            Board board;
+            synchronized (boards) {
+                board = boards.get(i);
+            }
+            
+            Solver solver = new Solver(board, threadNumber, verbosity);
+            
+            for (String word : words) {
+                Solution solution = solver.solve(word);
+                if (solution != null) {
+                    synchronized (solutions) {
+                        solutions.add(solution);
+                    }
+                }
+            }
+            
+            log("Thread " + threadNumber + " completed board " + i, 1);
+        }
     }
     // =========== END THREAD METHOD ===========
 
@@ -76,12 +95,26 @@ public class Boggle {
             
             // =========== CHANGE THIS BLOCK OF CODE TO ADD THREADING ===========
             // Find words on the Boggle boards, collecting the solutions in a TreeSet
-            int threadNumber = 0; // This will be set to a unique int for each of your threads
-            for(Board board : boards) {
-                Solver solver = new Solver(board, threadNumber, verbosity);
-                for(String word : words) {
-                    Solution solution = solver.solve(word);
-                    if(solution != null) solutions.add(solution);
+            List<Thread> threads = new ArrayList<>();
+
+            double boardsPerThread = (double) numberOfBoards / numThreads;
+
+            for (int i = 0; i < numThreads; i++) {
+                final int threadNumber = i;
+                final int first = (int) (i * boardsPerThread);
+                final int lastPlusOne = (i == numThreads - 1) ? numberOfBoards : (int) ((i + 1) * boardsPerThread);
+
+                Thread thread = new Thread(() -> solveRange(first, lastPlusOne, threadNumber));
+                threads.add(thread);
+                thread.start();
+            }
+
+            // Wait for all threads to complete
+            for (Thread thread : threads) {
+                try {
+                    thread.join();
+                } catch (InterruptedException e) {
+                    System.err.println("Thread interrupted: " + e);
                 }
             }
             // =========== END BLOCK OF CODE TO ADD THREADING ===========
