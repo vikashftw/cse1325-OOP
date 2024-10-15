@@ -21,27 +21,37 @@ public class Boggle {
     private static int numThreads = 1;     // default is to use a single thread
     private static String filename = "words.txt"; // default (this is the supplied file of 971 common words)
     private static int verbosity = 0;   // smaller ints mean less output - us 0 for timing
+
+    private static int nextBoardIndex = 0;   //counter
     
     // =========== WRITE AND INVOKE THIS METHOD FOR EACH THREAD ===========
-    private static void solveRange(int first, int lastPlusOne, int threadNumber) {
-        for (int i = first; i < lastPlusOne; i++) {
+    private static void solveRange(int threadNumber) {
+        while(true) {
+            int currentBoardIndex;
+            synchronized(boards) {
+                if (nextBoardIndex >= numberOfBoards) {
+                    break;
+                }
+                currentBoardIndex = nextBoardIndex++;
+            }
+        
             Board board;
             synchronized (boards) {
-                board = boards.get(i);
+                board = boards.get(currentBoardIndex);
             }
-            
+
             Solver solver = new Solver(board, threadNumber, verbosity);
-            
-            for (String word : words) {
+
+            for (String word: words) {
                 Solution solution = solver.solve(word);
-                if (solution != null) {
-                    synchronized (solutions) {
+                if(solution != null) {
+                    synchronized(solutions) {
                         solutions.add(solution);
                     }
                 }
             }
             
-            log("Thread " + threadNumber + " completed board " + i, 1);
+            log("Thread " + threadNumber + " completed board " + currentBoardIndex, 1);
         }
     }
     // =========== END THREAD METHOD ===========
@@ -97,14 +107,10 @@ public class Boggle {
             // Find words on the Boggle boards, collecting the solutions in a TreeSet
             List<Thread> threads = new ArrayList<>();
 
-            double boardsPerThread = (double) numberOfBoards / numThreads;
-
             for (int i = 0; i < numThreads; i++) {
                 final int threadNumber = i;
-                final int first = (int) (i * boardsPerThread);
-                final int lastPlusOne = (i == numThreads - 1) ? numberOfBoards : (int) ((i + 1) * boardsPerThread);
 
-                Thread thread = new Thread(() -> solveRange(first, lastPlusOne, threadNumber));
+                Thread thread = new Thread(() -> solveRange(threadNumber));
                 threads.add(thread);
                 thread.start();
             }
