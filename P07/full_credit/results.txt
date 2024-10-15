@@ -180,6 +180,7 @@ QUESTION 4: Does adding more threads increase the "system load", or is it consta
 
 Yes, from 0.285 seconds to 1.667 seconds for this data set
 
+Answer: Yes, adding more threads increases the system load. This is because the system has to manage more threads, which requires more resources like CPU time for switching between threads. As the number of threads grows, the system needs to handle more tasks simultaneously, increasing the load and slowing down the program slightly due to this extra overhead.
 
 
 
