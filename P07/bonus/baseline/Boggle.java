@@ -35,7 +35,10 @@ public class Boggle {
                 currentBoardIndex = nextBoardIndex++;
             }
         
-            Board board = boards.get(currentBoardIndex);
+            Board board;
+            synchronized (boards) {
+                board = boards.get(currentBoardIndex);
+            }
 
             Solver solver = new Solver(board, threadNumber, verbosity);
 
