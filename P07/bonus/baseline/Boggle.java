@@ -22,20 +22,23 @@ public class Boggle {
     private static String filename = "words.txt"; // default (this is the supplied file of 971 common words)
     private static int verbosity = 0;   // smaller ints mean less output - us 0 for timing
 
-    private static int nextBoardIndex = 0;   //counter
+    private static int sharedCounter = 0;   //counter
     
     // =========== WRITE AND INVOKE THIS METHOD FOR EACH THREAD ===========
     private static void solveRange(int threadNumber) {
         while(true) {
-            int currentBoardIndex;
+            int boardIndex;
             synchronized(boards) {
-                if (nextBoardIndex >= numberOfBoards) {
+                if (sharedCounter >= numberOfBoards) {
                     break;
                 }
-                currentBoardIndex = nextBoardIndex++;
+                boardIndex = sharedCounter++;
             }
         
-            Board board = boards.get(currentBoardIndex);
+            Board board;
+            synchronized (boards) {
+                board = boards.get(boardIndex);
+            }
 
             Solver solver = new Solver(board, threadNumber, verbosity);
 
@@ -48,7 +51,7 @@ public class Boggle {
                 }
             }
             
-            log("Thread " + threadNumber + " completed board " + currentBoardIndex, 1);
+            log("Thread " + threadNumber + " completed board " + boardIndex, 1);
         }
     }
     // =========== END THREAD METHOD ===========
