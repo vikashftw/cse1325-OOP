@@ -2,6 +2,8 @@
 #include <vector>
 #include <string>
 #include <cctype>
+#include <algorithm>
+#include <random>
 
 int main(int argc, char* argv[]) {
     std::vector<std::string> numbers;
@@ -18,12 +20,18 @@ int main(int argc, char* argv[]) {
         }
     }
 
-    std::cout << "Numbers:" << std::endl;
+    std::sort(words->begin(), words->end());
+
+    std::random_device rd;
+    std::mt19937 g(rd());
+    std::shuffle(numbers.begin(), numbers.end(), g);
+
+    std::cout << "Numbers (shuffled):" << std::endl;
     for (const auto& num : numbers) {
         std::cout << num << std::endl;
     }
 
-    std::cout << "Words:" << std::endl;
+    std::cout << "Words (sorted):" << std::endl;
     for (const auto& word : *words) {
         std::cout << word << std::endl;
     }
