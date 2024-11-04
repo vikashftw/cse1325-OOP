@@ -30,6 +30,7 @@ int main(int argc, char* argv[]) {
         return -1;
     } catch (const std::runtime_error& e) {
         std::cout << e.what() << std::endl;
+    }
 
     return 0;
 }
