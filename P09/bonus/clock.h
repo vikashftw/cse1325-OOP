@@ -15,7 +15,7 @@ protected:
 public:
     Clock(int hours, int minutes, int seconds);
     virtual ~Clock() {}
-    void tic();
+    virtual void tic();
     void print() const;
 };
 
