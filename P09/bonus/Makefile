@@ -13,4 +13,4 @@ timer.o: timer.cpp *.h
 	$(CXX) $(CXXFLAGS) -c timer.cpp -o timer.o
 
 clean:
-	-rm -f *.o *.gch *~ a.out clock
+	-rm -f *.o *.gch *~ a.out clock timer
