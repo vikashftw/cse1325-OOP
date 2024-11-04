@@ -18,7 +18,6 @@ int main(int argc, char* argv[]) {
         while (input != "q") {
             std::cout << "Remaining time is now ";
             timer.print();
-            std::cout << "\n";
             std::getline(std::cin, input);
             timer.tic();
         }
