@@ -5,7 +5,7 @@
 
 class Timer_expired : public std::runtime_error {
 public:
-    Timer_expired(const std::string& msg) : std::runtime_error(msg) {}
+    Timer_expired(const std::string& msg);
 };
 
 #endif
