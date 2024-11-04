@@ -1,8 +1,8 @@
-#include "clock.h"
+#include "timer.h"
 
 int main(int argc, char* argv[]) {
     if (argc != 4) {
-        std::cerr << "usage: clock <hour> <minutes> <seconds>" << std::endl;
+        std::cerr << "usage: timer <hour> <minutes> <seconds>" << std::endl;
         return -1;
     }
 
@@ -11,27 +11,25 @@ int main(int argc, char* argv[]) {
         int minutes = std::stoi(argv[2]);
         int seconds = std::stoi(argv[3]);
 
-        Clock clock(hours, minutes, seconds);
-
+        Timer timer(hours, minutes, seconds);
         std::cout << "\nEnter 'q' to quit.\n\n";
 
         std::string input;
         while (input != "q") {
-            std::cout << "The time is now ";
-            clock.print();
-
+            std::cout << "Remaining time is now ";
+            timer.print();
+            std::cout << "\n";
             std::getline(std::cin, input);
-            clock.tic();
+            timer.tic();
         }
-    }
-    catch (const std::out_of_range& e) {
+    } catch (const std::out_of_range& e) {
         std::cerr << e.what() << std::endl;
         return -2;
-    }
-    catch (const std::invalid_argument&) {
+    } catch (const std::invalid_argument&) {
         std::cerr << "Invalid input" << std::endl;
         return -1;
-    }
+    } catch (const std::runtime_error& e) {
+        std::cout << e.what() << std::endl;
 
     return 0;
 }
