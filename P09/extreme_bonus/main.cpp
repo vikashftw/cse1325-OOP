@@ -1,4 +1,5 @@
 #include "timer.h"
+#include "timer_expired.h"
 
 int main(int argc, char* argv[]) {
     if (argc != 4) {
@@ -27,7 +28,7 @@ int main(int argc, char* argv[]) {
     } catch (const std::invalid_argument&) {
         std::cerr << "Invalid input" << std::endl;
         return -1;
-    } catch (const std::runtime_error& e) {
+    } catch (const Timer_expired& e) {
         std::cout << e.what() << std::endl;
     }
 
