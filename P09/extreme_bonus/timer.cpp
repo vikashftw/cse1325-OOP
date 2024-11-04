@@ -1,4 +1,5 @@
 #include "timer.h"
+#include "timer_expired.h"
 
 void Timer::tic() {
     _seconds--;
@@ -14,6 +15,6 @@ void Timer::tic() {
         }
     }
     if (_hours == 0 && _minutes == 0 && _seconds == 0) {
-        throw std::runtime_error("Timer expired");
+        throw Timer_expired("Timer expired");
     }
 }
