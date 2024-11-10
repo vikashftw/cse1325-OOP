@@ -1,6 +1,6 @@
 #include "Purse.h"
 
-const std::string Purse::pound_utf8 = u8"£";
+const std::string Purse::pound_utf8 = "\u00A3";
 Purse::Purse(int pounds, int shillings, int pence)
     : _pounds(pounds), _shillings(shillings), _pence(pence) {
     rationalize();
