@@ -19,7 +19,7 @@ int main() {
         std::cout << "Name account " << i << ": ";
         std::getline(std::cin, accountName);
 
-        std::cout << "Enter your initial deposit (# <pounds> <shillings>s<pence>d): ";
+        std::cout << "Enter your initial deposit (#3 4s5d): ";
         std::cin >> deposit;
         std::cin.ignore();
 
