@@ -1,6 +1,7 @@
 #ifndef __PURSE_H
 #define __PURSE_H
 #include <iostream>
+#include <string>
 
 class Purse {
     private:
@@ -10,6 +11,7 @@ class Purse {
         void rationalize();
     
     public:
+        static const std::string pound_utf8;
         Purse(int pounds = 0, int shillings = 0, int pence = 0);
         friend std::ostream& operator<<(std::ostream& ost, const Purse& purse);
         friend std::istream& operator>>(std::istream& ist, Purse& purse);
