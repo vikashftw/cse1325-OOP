@@ -1,6 +1,7 @@
 #include "Purse.h"
 #include <map>
 #include <string>
+#include <iomanip>
 
 int main() {
     std::cout << "Welcome to Ye Olde Bank of Merry England\n\n";
@@ -27,11 +28,16 @@ int main() {
         std::cout << "Account " << accountName << " created with " << vault[accountName] << "\n\n";
     }
 
+    size_t maxWidth = 0;
+    for (const auto& [name, _] : vault) {
+        maxWidth = std::max(maxWidth, name.size());
+    }
+
     std::cout << "\nAccount List\n============\n\n";
     Purse total(0, 0, 0);
 
     for (const auto& [name, purse] : vault) {
-        std::cout << "    " << name << " with " << purse << "\n";
+        std::cout << std::setw(maxWidth) << std::right << name << " with " << purse << "\n";
         total += purse;
     }
 
