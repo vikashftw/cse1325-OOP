@@ -29,6 +29,21 @@ std::ostream& operator<<(std::ostream& ost, const Purse& purse) {
     return ost;
 }
 
+std::istream& operator>>(std::istream& ist, Purse& purse) {
+    char poundSymbol, shillingSymbol, penceSymbol;
+    int pounds, shillings, pence;
+
+    ist >> poundSymbol >> pounds >> shillings >> shillingSymbol >> pence >> penceSymbol;
+
+    if (poundSymbol == '#' && shillingSymbol == 's' && penceSymbol == 'd') {
+        purse._pounds = pounds;
+        purse._shillings = shillings;
+        purse._pence = pence;
+        purse.rationalize();
+    }
+    return ist;
+}
+
 Purse& Purse::operator++() {
     ++_pence;
     rationalize();
