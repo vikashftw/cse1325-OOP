@@ -1,6 +1,5 @@
 #include "Purse.h"
 
-const std::string Purse::pound_utf8 = "\u00A3";
 Purse::Purse(int pounds, int shillings, int pence)
     : _pounds(pounds), _shillings(shillings), _pence(pence) {
     rationalize();
@@ -26,18 +25,21 @@ void Purse::rationalize() {
 }
 
 std::ostream& operator<<(std::ostream& ost, const Purse& purse) {
-    ost << Purse::pound_utf8 << purse._pounds << " " << purse._shillings << "s" << purse._pence << "d";
+    ost << "£" << purse._pounds << " " << purse._shillings << "s" << purse._pence << "d";
     return ost;
 }
 
 std::istream& operator>>(std::istream& ist, Purse& purse) {
-    std::string pound_sign;
-    int pounds, shillings, pence; 
-    ist >> pound_sign >> pounds >> shillings >> pence;
-    if (pound_sign == Purse::pound_utf8) {
-        purse = Purse(pounds, shillings, pence);
-    } else {
-        ist.setstate(std::ios::failbit); // Set failbit if the pound symbol doesn't match
+    char poundSymbol, shillingSymbol, penceSymbol;
+    int pounds, shillings, pence;
+
+    ist >> poundSymbol >> pounds >> shillings >> shillingSymbol >> pence >> penceSymbol;
+
+    if (poundSymbol == '#' && shillingSymbol == 's' && penceSymbol == 'd') {
+        purse._pounds = pounds;
+        purse._shillings = shillings;
+        purse._pence = pence;
+        purse.rationalize();
     }
     return ist;
 }
