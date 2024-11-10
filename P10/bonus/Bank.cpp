@@ -14,16 +14,16 @@ int main() {
 
     for (int i = 0; i < accountCount; ++i) {
         std::string accountName;
-        int pounds, shillings, pence;
+        Purse deposit;
 
         std::cout << "Name account " << i << ": ";
         std::getline(std::cin, accountName);
 
-        std::cout << "Enter your initial deposit (pounds shillings pence): ";
-        std::cin >> pounds >> shillings >> pence;
+        std::cout << "Enter your initial deposit (# <pounds> <shillings>s<pence>d): ";
+        std::cin >> deposit;
         std::cin.ignore();
 
-        vault[accountName] = Purse(pounds, shillings, pence);
+        vault[accountName] = deposit;
         std::cout << "Account " << accountName << " created with " << vault[accountName] << "\n\n";
     }
 
