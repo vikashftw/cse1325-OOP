@@ -98,3 +98,15 @@ Purse& Purse::operator-=(const Purse& other) {
     rationalize();
     return *this;
 }
+
+int& Purse::operator[](const std::string& type) {
+    if (type == "£" || type == "#") {
+        return _pounds;
+    } else if (type == "s") {
+        return _shillings;
+    } else if (type == "d") {
+        return _pence;
+    } else {
+        throw std::runtime_error("Invalid currency type");
+    }
+}

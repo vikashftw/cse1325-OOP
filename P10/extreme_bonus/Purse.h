@@ -22,6 +22,7 @@ class Purse {
         Purse operator-(const Purse& purse) const;
         Purse& operator+=(const Purse& purse);
         Purse& operator-=(const Purse& purse);
+        int& operator[](const std::string& type);
 };
 
 #endif
