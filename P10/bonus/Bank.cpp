@@ -37,7 +37,7 @@ int main() {
     Purse total(0, 0, 0);
 
     for (const auto& [name, purse] : vault) {
-        std::cout << std::setw(maxWidth) << std::right << name << " with " << purse << "\n";
+        std::cout << "      " << std::setw(maxWidth) << std::right << name << " with " << purse << "\n";
         total += purse;
     }
 
