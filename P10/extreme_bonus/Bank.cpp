@@ -20,7 +20,7 @@ int main() {
         std::cout << "Name account " << i << ": ";
         std::getline(std::cin, accountName);
 
-        std::cout << "Enter your initial deposit (#3 4s5d): ";
+        std::cout << "Enter your initial deposit (£3 4s5d): ";
         std::cin >> deposit;
         std::cin.ignore();
 
@@ -37,7 +37,7 @@ int main() {
     Purse total(0, 0, 0);
 
     for (const auto& [name, purse] : vault) {
-        std::cout << std::setw(maxWidth) << std::right << name << " with " << purse << "\n";
+        std::cout << "      " << std::setw(maxWidth) << std::right << name << " with " << purse << "\n";
         total += purse;
     }
 

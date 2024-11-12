@@ -1,5 +1,7 @@
 #include "Purse.h"
 
+const std::string Purse::pound_utf8 = "£";
+
 Purse::Purse(int pounds, int shillings, int pence)
     : _pounds(pounds), _shillings(shillings), _pence(pence) {
     rationalize();
@@ -25,17 +27,30 @@ void Purse::rationalize() {
 }
 
 std::ostream& operator<<(std::ostream& ost, const Purse& purse) {
-    ost << "£" << purse._pounds << " " << purse._shillings << "s" << purse._pence << "d";
+    ost << Purse::pound_utf8 << purse._pounds << " " << purse._shillings << "s" << purse._pence << "d";
     return ost;
 }
 
+
 std::istream& operator>>(std::istream& ist, Purse& purse) {
-    char poundSymbol, shillingSymbol, penceSymbol;
+    std::string symbol;
+    char first = ist.get();
+    if (first == static_cast<char>(0xC2)) {
+        char second = ist.get();
+        if (second == static_cast<char>(0xA3)) {
+            symbol = Purse::pound_utf8;
+        }
+    } else {
+        ist.putback(first);
+        ist >> symbol;
+    }
+
     int pounds, shillings, pence;
+    char shillingSymbol, penceSymbol;
 
-    ist >> poundSymbol >> pounds >> shillings >> shillingSymbol >> pence >> penceSymbol;
+    ist >> pounds >> shillings >> shillingSymbol >> pence >> penceSymbol;
 
-    if (poundSymbol == '#' && shillingSymbol == 's' && penceSymbol == 'd') {
+    if ((symbol == Purse::pound_utf8) && shillingSymbol == 's' && penceSymbol == 'd') {
         purse._pounds = pounds;
         purse._shillings = shillings;
         purse._pence = pence;
