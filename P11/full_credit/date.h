@@ -1,7 +1,8 @@
 #ifndef DATE_H
 #define DATE_H
 
-#include <ostream>
+#include <iostream>
+#include <iomanip>
 
 class Date {
     private:
