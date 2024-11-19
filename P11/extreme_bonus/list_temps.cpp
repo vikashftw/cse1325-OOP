@@ -50,29 +50,32 @@ int main(int argc, char* argv[]) {
     file.close();
 
     while (true) {
-        std::cout << "Starting date to list (year month day): ";
-        int start_year, start_month, start_day;
-        if (!(std::cin >> start_year >> start_month >> start_day)) break;
+        Date start_date, end_date;
 
-        std::cout << "Ending   date to list (year month day): ";
-        int end_year, end_month, end_day;
-        if (!(std::cin >> end_year >> end_month >> end_day)) break;
-
-        Date start_date(start_year, start_month, start_day);
-        Date end_date(end_year, end_month, end_day);
-
-        auto it = temps.find(start_date);
-        if (it == temps.end()) {
-            it = temps.lower_bound(start_date);
+        std::cout << "Starting date to list (year/month/day): ";
+        if (!(std::cin >> start_date)) {
+            break;
         }
-        
-        while (it != temps.end() && it->first <= end_date) {
+
+        if (temps.find(start_date) == temps.end()) {
+            std::cerr << start_date << " is not in the database!" << std::endl;
+            continue;
+        }
+
+        std::cout << "Ending   date to list (year/month/day): ";
+        if (!(std::cin >> end_date)) {
+            break; 
+        }
+
+        if (end_date < start_date) {
+            std::cerr << end_date << " is earlier than " << start_date << "!" << std::endl;
+            continue;
+        }
+
+        for (auto it = temps.lower_bound(start_date); it != temps.end() && it->first <= end_date; ++it) {
             std::cout << it->first << "   "
                       << std::fixed << std::setprecision(1) << it->second << std::endl;
-            ++it;
         }
-
-        std::cout;
     }
 
     return 0;

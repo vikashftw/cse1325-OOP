@@ -14,3 +14,13 @@ std::ostream& operator<<(std::ostream& ost, const Date& date) {
 
     return ost;
 }
+
+std::istream& operator>>(std::istream& ist, Date& date) {
+    char sep1, sep2;
+    ist >> date._year >> sep1 >> date._month >> sep2 >> date._day;
+
+    if (sep1 != '/' || sep2 != '/' || !ist) {
+        ist.setstate(std::ios::failbit);
+    }
+    return ist;
+}
