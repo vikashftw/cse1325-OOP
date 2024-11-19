@@ -61,11 +61,15 @@ int main(int argc, char* argv[]) {
         Date start_date(start_year, start_month, start_day);
         Date end_date(end_year, end_month, end_day);
 
-        for (auto it = temps.begin(); it != temps.end(); ++it) {
-            if (it->first >= start_date && it->first <= end_date) {
-                std::cout << it->first << "   " 
-                          << std::fixed << std::setprecision(1) << it->second << std::endl;
-            }
+        auto it = temps.find(start_date);
+        if (it == temps.end()) {
+            it = temps.lower_bound(start_date);
+        }
+        
+        while (it != temps.end() && it->first <= end_date) {
+            std::cout << it->first << "   "
+                      << std::fixed << std::setprecision(1) << it->second << std::endl;
+            ++it;
         }
 
         std::cout;
