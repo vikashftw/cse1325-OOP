@@ -71,8 +71,6 @@ int main(int argc, char* argv[]) {
                       << std::fixed << std::setprecision(1) << it->second << std::endl;
             ++it;
         }
-
-        std::cout;
     }
 
     return 0;
