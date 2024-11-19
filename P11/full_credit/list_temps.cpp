@@ -25,21 +25,23 @@ int main(int argc, char* argv[]) {
     while (std::getline(file, line)) {
         std::stringstream ss(line);
         std::string continent, country, state, region;
-        int year, month, day;
-        double temperature;
 
         std::getline(ss, continent, ',');
         std::getline(ss, country, ',');
         std::getline(ss, state, ',');
         std::getline(ss, region, ',');
 
-        ss >> month;
-        ss.ignore(1, ',');
-        ss >> day;
-        ss.ignore(1, ',');
-        ss >> year;
-        ss.ignore(1, ',');
-        ss >> temperature;
+        std::getline(ss, line, ',');
+        int month = std::stoi(line);
+
+        std::getline(ss, line, ',');
+        int day = std::stoi(line);
+
+        std::getline(ss, line, ',');
+        int year = std::stoi(line);
+
+        std::getline(ss, line, ',');
+        double temperature = std::stod(line);
 
         Date date(year, month, day);
         temps[date] = temperature;
